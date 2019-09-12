@@ -1,51 +1,18 @@
 package cn.wpin.mall.product.entity;
 
-import java.io.Serializable;
+import cn.wpin.mall.common.entity.IdEntity;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 
-public class AlbumPic implements Serializable {
-    private Long id;
+/**
+ * @author wangpin
+ */
+@EqualsAndHashCode(callSuper = true)
+@Data
+public class AlbumPic extends IdEntity {
 
     private Long albumId;
 
     private String pic;
 
-    private static final long serialVersionUID = 1L;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Long getAlbumId() {
-        return albumId;
-    }
-
-    public void setAlbumId(Long albumId) {
-        this.albumId = albumId;
-    }
-
-    public String getPic() {
-        return pic;
-    }
-
-    public void setPic(String pic) {
-        this.pic = pic;
-    }
-
-    @Override
-    public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append(getClass().getSimpleName());
-        sb.append(" [");
-        sb.append("Hash = ").append(hashCode());
-        sb.append(", id=").append(id);
-        sb.append(", albumId=").append(albumId);
-        sb.append(", pic=").append(pic);
-        sb.append(", serialVersionUID=").append(serialVersionUID);
-        sb.append("]");
-        return sb.toString();
-    }
 }
