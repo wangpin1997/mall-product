@@ -16,7 +16,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
  * swagger设置
  *
  * @author wangpin
- * @date 2018年12月13日15:30:02
+ * @date 2019-09
  */
 @Configuration
 @EnableSwagger2
@@ -36,7 +36,7 @@ public class SwaggerConfig {
 
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
-                .title("商城用户模块API接口列表")
+                .title("商品模块API接口列表")
                 .description("")
                 .version("1.0")
                 .build();
