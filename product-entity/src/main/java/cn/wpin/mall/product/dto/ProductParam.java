@@ -1,5 +1,7 @@
 package cn.wpin.mall.product.dto;
 
+import cn.wpin.mall.content.entity.PrefrenceAreaProductRelation;
+import cn.wpin.mall.content.entity.SubjectProductRelation;
 import cn.wpin.mall.product.entity.*;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
@@ -25,12 +27,9 @@ public class ProductParam extends Product {
     private List<SkuStock> skuStockList;
     @ApiModelProperty("商品参数及自定义规格属性")
     private List<ProductAttributeValue> productAttributeValueList;
-    /**
-     * @TODO：先注释点，后面加上
-     */
-//    @ApiModelProperty("专题和商品关系")
-//    private List<SubjectProductRelation> subjectProductRelationList;
-//    @ApiModelProperty("优选专区和商品的关系")
-//    private List<PrefrenceAreaProductRelation> prefrenceAreaProductRelationList;
+    @ApiModelProperty("专题和商品关系")
+    private List<SubjectProductRelation> subjectProductRelationList;
+    @ApiModelProperty("优选专区和商品的关系")
+    private List<PrefrenceAreaProductRelation> prefrenceAreaProductRelationList;
 
 }

@@ -1,5 +1,11 @@
 package cn.wpin.mall.product.service;
 
+import cn.wpin.mall.content.dao.PrefrenceAreaProductRelationDao;
+import cn.wpin.mall.content.dao.SubjectProductRelationDao;
+import cn.wpin.mall.content.example.PrefrenceAreaProductRelationExample;
+import cn.wpin.mall.content.example.SubjectProductRelationExample;
+import cn.wpin.mall.content.mapper.PrefrenceAreaProductRelationMapper;
+import cn.wpin.mall.content.mapper.SubjectProductRelationMapper;
 import cn.wpin.mall.product.dao.*;
 import cn.wpin.mall.product.dto.ProductParam;
 import cn.wpin.mall.product.dto.ProductQueryParam;
@@ -62,14 +68,14 @@ public class ProductService {
     @Autowired
     private ProductAttributeValueMapper productAttributeValueMapper;
     
-//    @Autowired
-//    private CmsSubjectProductRelationDao subjectProductRelationDao;
-//    @Autowired
-//    private CmsSubjectProductRelationMapper subjectProductRelationMapper;
-//    @Autowired
-//    private CmsPrefrenceAreaProductRelationDao prefrenceAreaProductRelationDao;
-//    @Autowired
-//    private CmsPrefrenceAreaProductRelationMapper prefrenceAreaProductRelationMapper;
+    @Autowired
+    private SubjectProductRelationDao subjectProductRelationDao;
+    @Autowired
+    private SubjectProductRelationMapper subjectProductRelationMapper;
+    @Autowired
+    private PrefrenceAreaProductRelationDao prefrenceAreaProductRelationDao;
+    @Autowired
+    private PrefrenceAreaProductRelationMapper prefrenceAreaProductRelationMapper;
     @Autowired
     private ProductDao productDao;
     @Autowired
@@ -96,10 +102,10 @@ public class ProductService {
         relateAndInsertList(skuStockDao, productParam.getSkuStockList(), productId);
         //添加商品参数,添加自定义商品规格
         relateAndInsertList(productAttributeValueDao, productParam.getProductAttributeValueList(), productId);
-//        //关联专题 todo:
-//        relateAndInsertList(subjectProductRelationDao, productParam.getSubjectProductRelationList(), productId);
-//        //关联优选
-//        relateAndInsertList(prefrenceAreaProductRelationDao, productParam.getPrefrenceAreaProductRelationList(), productId);
+        //关联专题
+        relateAndInsertList(subjectProductRelationDao, productParam.getSubjectProductRelationList(), productId);
+        //关联优选
+        relateAndInsertList(prefrenceAreaProductRelationDao, productParam.getPrefrenceAreaProductRelationList(), productId);
         count = 1;
         return count;
     }
@@ -163,16 +169,15 @@ public class ProductService {
         productAttributeValueMapper.deleteByExample(productAttributeValueExample);
         relateAndInsertList(productAttributeValueDao, productParam.getProductAttributeValueList(), id);
         //关联专题
-        //TODO:cms类的一些包整合好后引入
-//        CmsSubjectProductRelationExample subjectProductRelationExample = new CmsSubjectProductRelationExample();
-//        subjectProductRelationExample.createCriteria().andProductIdEqualTo(id);
-//        subjectProductRelationMapper.deleteByExample(subjectProductRelationExample);
-//        relateAndInsertList(subjectProductRelationDao, productParam.getSubjectProductRelationList(), id);
-//        //关联优选
-//        CmsPrefrenceAreaProductRelationExample prefrenceAreaExample = new CmsPrefrenceAreaProductRelationExample();
-//        prefrenceAreaExample.createCriteria().andProductIdEqualTo(id);
-//        prefrenceAreaProductRelationMapper.deleteByExample(prefrenceAreaExample);
-//        relateAndInsertList(prefrenceAreaProductRelationDao, productParam.getPrefrenceAreaProductRelationList(), id);
+        SubjectProductRelationExample subjectProductRelationExample = new SubjectProductRelationExample();
+        subjectProductRelationExample.createCriteria().andProductIdEqualTo(id);
+        subjectProductRelationMapper.deleteByExample(subjectProductRelationExample);
+        relateAndInsertList(subjectProductRelationDao, productParam.getSubjectProductRelationList(), id);
+        //关联优选
+        PrefrenceAreaProductRelationExample prefrenceAreaExample = new PrefrenceAreaProductRelationExample();
+        prefrenceAreaExample.createCriteria().andProductIdEqualTo(id);
+        prefrenceAreaProductRelationMapper.deleteByExample(prefrenceAreaExample);
+        relateAndInsertList(prefrenceAreaProductRelationDao, productParam.getPrefrenceAreaProductRelationList(), id);
         count = 1;
         return count;
     }
@@ -330,10 +335,10 @@ public class ProductService {
             }
             productAttributeValueDao.insertList(productAttributeValueList);
         }
-        //关联专题 todo:
-//        relateAndInsertList(subjectProductRelationDao, productParam.getSubjectProductRelationList(), productId);
-//        //关联优选
-//        relateAndInsertList(prefrenceAreaProductRelationDao, productParam.getPrefrenceAreaProductRelationList(), productId);
+        //关联专题
+        relateAndInsertList(subjectProductRelationDao, productParam.getSubjectProductRelationList(), productId);
+        //关联优选
+        relateAndInsertList(prefrenceAreaProductRelationDao, productParam.getPrefrenceAreaProductRelationList(), productId);
         count = 1;
         return count;
     }
@@ -347,7 +352,9 @@ public class ProductService {
      */
     private void relateAndInsertList(Object dao, List dataList, Long productId) {
         try {
-            if (CollectionUtils.isEmpty(dataList)) return;
+            if (CollectionUtils.isEmpty(dataList)) {
+                return;
+            }
             for (Object item : dataList) {
                 Method setId = item.getClass().getMethod("setId", Long.class);
                 setId.invoke(item, (Long) null);
