@@ -69,7 +69,7 @@ public interface BrandClient {
      * @return
      */
     @RequestMapping(value = "brand/{id}", method = RequestMethod.GET)
-    CommonResult<Brand> getItem(@PathVariable("id") Long id);
+    Brand getItem(@PathVariable("id") Long id);
 
     /**
      * 批量删除品牌

@@ -46,7 +46,7 @@ public class ProductController {
 
     @ApiOperation("查询商品")
     @RequestMapping(value = "/list", method = RequestMethod.GET)
-    public CommonPage<Product> getList(ProductQueryParam productQueryParam,
+    public CommonPage<Product> getList(@RequestBody ProductQueryParam productQueryParam,
                                        @RequestParam(value = "pageSize", defaultValue = "5") Integer pageSize,
                                        @RequestParam(value = "pageNum", defaultValue = "1") Integer pageNum) {
         List<Product> productList = productService.list(productQueryParam, pageSize, pageNum);

@@ -40,9 +40,9 @@ public interface ProductClient {
      * 查询商品
      */
     @RequestMapping(value = "product/list", method = RequestMethod.GET)
-    CommonPage<Product> getList(ProductQueryParam productQueryParam,
-                                @RequestParam(value = "pageSize", defaultValue = "5") Integer pageSize,
-                                @RequestParam(value = "pageNum", defaultValue = "1") Integer pageNum);
+    CommonPage<Product> getList(@RequestBody ProductQueryParam productQueryParam,
+                                @RequestParam(value = "pageSize") Integer pageSize,
+                                @RequestParam(value = "pageNum") Integer pageNum);
 
    
     /**
