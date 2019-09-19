@@ -21,4 +21,11 @@ public interface SkuStockClient {
      */
     @RequestMapping(value = "sku/update/{pid}", method = RequestMethod.POST)
     int update(@PathVariable Long pid, @RequestBody List<SkuStock> skuStockList);
+
+
+    @PostMapping("updateSku")
+    int updateByPrimaryKeySelective(@RequestBody SkuStock skuStock);
+
+    @GetMapping("selectByKey")
+    SkuStock selectByPrimaryKey(@RequestParam Long id);
 }

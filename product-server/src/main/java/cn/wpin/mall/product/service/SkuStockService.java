@@ -12,6 +12,7 @@ import java.util.List;
 
 /**
  * 商品sku库存管理Service实现类
+ *
  * @author wangpin
  */
 @Service
@@ -21,7 +22,7 @@ public class SkuStockService {
     @Autowired
     private SkuStockDao skuStockDao;
 
-    
+
     public List<SkuStock> getList(Long pid, String keyword) {
         SkuStockExample example = new SkuStockExample();
         SkuStockExample.Criteria criteria = example.createCriteria().andProductIdEqualTo(pid);
@@ -31,8 +32,16 @@ public class SkuStockService {
         return skuStockMapper.selectByExample(example);
     }
 
-    
+
     public int update(Long pid, List<SkuStock> skuStockList) {
         return skuStockDao.replaceList(skuStockList);
+    }
+
+    public int updateByPrimaryKeySelective(SkuStock skuStock) {
+        return skuStockMapper.updateByPrimaryKeySelective(skuStock);
+    }
+
+    public SkuStock selectByPrimaryKey(Long id) {
+        return skuStockMapper.selectByPrimaryKey(id);
     }
 }

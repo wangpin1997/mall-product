@@ -33,4 +33,14 @@ public class SkuStockController {
     public int update(@PathVariable Long pid, @RequestBody List<SkuStock> skuStockList) {
         return skuStockService.update(pid, skuStockList);
     }
+
+    @PostMapping("updateSku")
+    public int updateByPrimaryKeySelective(@RequestBody SkuStock skuStock) {
+        return skuStockService.updateByPrimaryKeySelective(skuStock);
+    }
+
+    @GetMapping("selectByKey")
+    public SkuStock selectByPrimaryKey(@RequestParam Long id) {
+        return skuStockService.selectByPrimaryKey(id);
+    }
 }
