@@ -44,7 +44,7 @@ public class HomeController {
     /**
      * 获取新品推荐
      */
-    @RequestMapping("getFlashProductList")
+    @RequestMapping("getNewProductList")
     public List<Product> getNewProductList(@RequestParam Integer offset, @RequestParam Integer limit) {
         return homeService.getNewProductList(offset, limit);
     }
@@ -52,7 +52,7 @@ public class HomeController {
     /**
      * 获取人气推荐
      */
-    @RequestMapping("getFlashProductList")
+    @RequestMapping("getHotProductList")
     public List<Product> getHotProductList(@RequestParam Integer offset, @RequestParam Integer limit) {
         return homeService.getHotProductList(offset, limit);
     }
@@ -60,7 +60,7 @@ public class HomeController {
     /**
      * 获取推荐专题
      */
-    @RequestMapping("getFlashProductList")
+    @RequestMapping("getRecommendSubjectList")
     public List<Subject> getRecommendSubjectList(@RequestParam Integer offset, @RequestParam Integer limit) {
         return homeService.getRecommendSubjectList(offset, limit);
     }
