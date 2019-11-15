@@ -8,6 +8,9 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import java.util.List;
 
+/**
+ * @author wangpin
+ */
 @Configuration
 @Order(1)
 public class WebConfig implements WebMvcConfigurer {
