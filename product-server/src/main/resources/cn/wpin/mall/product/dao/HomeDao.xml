@@ -61,7 +61,7 @@
         LIMIT #{offset}, #{limit};
     </select>
 
-    <select id="getRecommendSubjectList" resultMap="cn.wpin.mall.content.mapper.SubjectMapper.BaseResultMap">
+    <select id="getRecommendSubjectList" resultType="cn.wpin.mall.content.entity.Subject">
         SELECT s.*
         FROM
             sms_home_recommend_subject hs
