@@ -26,20 +26,20 @@ public interface ProductClient {
      * 根据商品id获取商品编辑信息
      */
     @RequestMapping(value = "product/updateInfo/{id}", method = RequestMethod.GET)
-    ProductResult getUpdateInfo(@PathVariable Long id);
+    ProductResult getUpdateInfo(@PathVariable("id") Long id);
 
    
     /**
      * 更新商品
      */
     @RequestMapping(value = "product/update/{id}", method = RequestMethod.POST)
-    int update(@PathVariable Long id, @RequestBody ProductParam productParam);
+    int update(@PathVariable("id") Long id, @RequestBody ProductParam productParam);
 
    
     /**
      * 查询商品
      */
-    @RequestMapping(value = "product/list", method = RequestMethod.GET)
+    @RequestMapping(value = "product/list", method = RequestMethod.POST)
     CommonPage<Product> getList(@RequestBody ProductQueryParam productQueryParam,
                                 @RequestParam(value = "pageSize") Integer pageSize,
                                 @RequestParam(value = "pageNum") Integer pageNum);
@@ -49,7 +49,7 @@ public interface ProductClient {
      * 根据商品名称或货号模糊查询
      */
     @RequestMapping(value = "product/simpleList", method = RequestMethod.GET)
-    List<Product> getList(String keyword);
+    List<Product> getList(@RequestParam("keyword") String keyword);
 
    
     /**

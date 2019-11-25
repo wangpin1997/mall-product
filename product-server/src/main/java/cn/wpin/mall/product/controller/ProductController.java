@@ -45,7 +45,7 @@ public class ProductController {
     }
 
     @ApiOperation("查询商品")
-    @RequestMapping(value = "/list", method = RequestMethod.GET)
+    @RequestMapping(value = "/list", method = RequestMethod.POST)
     public CommonPage<Product> getList(@RequestBody ProductQueryParam productQueryParam,
                                        @RequestParam(value = "pageSize", defaultValue = "5") Integer pageSize,
                                        @RequestParam(value = "pageNum", defaultValue = "1") Integer pageNum) {
@@ -55,7 +55,7 @@ public class ProductController {
 
     @ApiOperation("根据商品名称或货号模糊查询")
     @RequestMapping(value = "/simpleList", method = RequestMethod.GET)
-    public List<Product> getList(String keyword) {
+    public List<Product> getList(@RequestParam("keyword") String keyword) {
         return productService.list(keyword);
     }
 
