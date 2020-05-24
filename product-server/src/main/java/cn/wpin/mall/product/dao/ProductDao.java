@@ -1,6 +1,7 @@
 package cn.wpin.mall.product.dao;
 
 import cn.wpin.mall.product.dto.ProductResult;
+import cn.wpin.mall.product.entity.Product;
 import org.apache.ibatis.annotations.Param;
 
 
@@ -13,4 +14,7 @@ public interface ProductDao {
      * 获取商品编辑信息
      */
     ProductResult getUpdateInfo(@Param("id") Long id);
+
+
+
 }

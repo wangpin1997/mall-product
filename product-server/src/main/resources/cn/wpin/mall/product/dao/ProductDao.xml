@@ -13,8 +13,8 @@
         </collection>
         <collection property="productAttributeValueList" columnPrefix="attribute_" resultMap="cn.wpin.mall.product.mapper.ProductAttributeValueMapper.BaseResultMap">
         </collection>
-        <collection property="subjectProductRelationList" column="{productId=id}" select="selectSubjectProductRelationByProductId"/>
-        <collection property="prefrenceAreaProductRelationList" column="{productId=id}" select="selectPrefrenceAreaProductRelationByProductId"/>
+<!--        <collection property="subjectProductRelationList" column="{productId=id}" select="selectSubjectProductRelationByProductId"/>-->
+<!--        <collection property="prefrenceAreaProductRelationList" column="{productId=id}" select="selectPrefrenceAreaProductRelationByProductId"/>-->
     </resultMap>
 
     <select id="getUpdateInfo" resultMap="updateInfoMap">
@@ -37,7 +37,7 @@
 <!--    <select id="selectSubjectProductRelationByProductId" resultMap="cn.wpin.mall.product.mapper.CmsSubjectProductRelationMapper.BaseResultMap">-->
 <!--        select * from cms_subject_product_relation where product_id=#{productId}-->
 <!--    </select>-->
-<!--    <select id="selectPrefrenceAreaProductRelationByProductId" resultMap="cn.wpin.mall.product.mapper.CmsPrefrenceAreaProductRelationMapper.BaseResultMap">-->
+<!--    <select id="selectPrefrenceAreaProductRelationByProductId" resultMap="cn.wpin.mall.content.mapper.CmsPrefrenceAreaProductRelationMapper.BaseResultMap">-->
 <!--        select * from cms_prefrence_area_product_relation where product_id=#{productId}-->
 <!--    </select>-->
 

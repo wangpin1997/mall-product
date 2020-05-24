@@ -1,7 +1,7 @@
 package cn.wpin.mall.product.controller;
 
-import cn.wpin.mall.portal.entity.CartProduct;
-import cn.wpin.mall.portal.entity.PromotionProduct;
+import cn.wpin.mall.product.entity.CartProduct;
+import cn.wpin.mall.product.entity.PromotionProduct;
 import cn.wpin.mall.product.service.PortalProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
