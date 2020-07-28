@@ -1,4 +1,4 @@
-package cn.wpin.mall.product.cnofig;
+package cn.wpin.mall.product.config;
 
 import io.swagger.annotations.ApiOperation;
 import org.springframework.context.annotation.Bean;

@@ -1,4 +1,4 @@
-//package cn.wpin.mall.product.cnofig;
+//package cn.wpin.mall.product.config;
 //
 //import org.apache.ibatis.executor.Executor;
 //import org.apache.ibatis.mapping.MappedStatement;

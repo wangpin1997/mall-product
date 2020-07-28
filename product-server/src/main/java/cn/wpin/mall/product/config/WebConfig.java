@@ -1,4 +1,4 @@
-package cn.wpin.mall.product.cnofig;
+package cn.wpin.mall.product.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
