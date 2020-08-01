@@ -3,7 +3,6 @@ package cn.wpin.mall.product.service;
 import cn.wpin.mall.product.util.RedissonLock;
 import lombok.extern.slf4j.Slf4j;
 import org.redisson.api.RLock;
-import org.redisson.client.RedisClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -23,25 +22,24 @@ public class RedissonService {
     @Autowired
     private RedissonLock redissonLock;
 
-    @Autowired
-    private RedisClient redisClient;
 
-
-    public void testRedis(String productId) {
+    public void testRedis(String productId) throws InterruptedException {
         RLock lock = redissonLock.getRLock(locks);
+        boolean bs = lock.tryLock(5, 6, TimeUnit.SECONDS);
         try {
-            boolean bs = lock.tryLock(5, 6, TimeUnit.SECONDS);
-            if (bs) {
-                // 业务代码
-                log.info("进入业务代码: " + locks + "锁已被占用");
+            if (!bs) {
+                log.info("进入业务代码: " + locks + "锁已被其他线程占用");
+                return;
 
-                lock.unlock();
-            } else {
-                log.info("进入业务代码: " + locks + "锁已被当前定时任务占用，其他定时任务直接放行");
             }
-        } catch (Exception e) {
-            log.error("", e);
-            lock.unlock();
+            // 业务代码
+            System.out.println("执行业务代码" + productId);
+        } finally {
+            if (bs) {
+                lock.unlock();
+            }
+
+
         }
     }
 }
