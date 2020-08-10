@@ -2,9 +2,9 @@ package cn.wpin.mall.product.util;
 
 import org.redisson.api.*;
 import org.redisson.config.Config;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
+import javax.annotation.Resource;
 import java.io.IOException;
 
 /**
@@ -12,10 +12,10 @@ import java.io.IOException;
  *
  * @author wangpin
  */
-@Service("redissonService")
+@Component
 public class RedissonLock {
 
-    @Autowired
+    @Resource
     private RedissonClient redissonClient;
 
     public void getRedissonClient() throws IOException {

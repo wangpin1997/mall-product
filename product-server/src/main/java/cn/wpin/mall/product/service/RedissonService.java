@@ -17,14 +17,14 @@ import java.util.concurrent.TimeUnit;
 @Component
 public class RedissonService {
 
-    private static String locks = "product";
-
     @Autowired
     private RedissonLock redissonLock;
 
 
     public void testRedis(String productId) throws InterruptedException {
-        RLock lock = redissonLock.getRLock(locks);
+        String locks = "product";
+        StackTraceElement stackTraceElement = Thread.currentThread().getStackTrace()[1];
+        RLock lock = redissonLock.getRLock(stackTraceElement.getClassName() + stackTraceElement.getMethodName());
         boolean bs = lock.tryLock(5, 6, TimeUnit.SECONDS);
         try {
             if (!bs) {

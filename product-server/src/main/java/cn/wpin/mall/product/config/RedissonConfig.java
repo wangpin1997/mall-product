@@ -1,5 +1,6 @@
 package cn.wpin.mall.product.config;
 
+import org.apache.commons.lang.StringUtils;
 import org.redisson.Redisson;
 import org.redisson.api.RedissonClient;
 import org.redisson.config.Config;
@@ -28,9 +29,11 @@ public class RedissonConfig {
     public RedissonClient getRedisson() {
 
         Config config = new Config();
-        config.useSingleServer().setAddress("redis://" + host + ":" + port).setPassword(password);
+        config.useSingleServer().setAddress("redis://" + host + ":" + port);
+        if (StringUtils.isNotBlank(password)) {
+            config.useSingleServer().setPassword(password);
+        }
         //添加主从配置
-
         return Redisson.create(config);
     }
 
